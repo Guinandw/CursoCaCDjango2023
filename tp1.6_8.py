@@ -26,6 +26,7 @@ class Persona:
     def dni(self):
         return  self.__dni
     
+    #se establecieron nombres diferentes a los setters
     @nombre.setter
     def editarnombre(self, nuevoNombre):
         self.__nombre = nuevoNombre
@@ -61,7 +62,7 @@ negativa, no se hará nada.
 rojos """
 
 class Cuenta:
-    
+    #Cuenta se compone de persona sino no existe. Se estableque que el parametro titular es de la clase persona
     def __init__(self, titular: Persona(), cantidad =0):
         self.__titular = titular
         self.__cantidad = cantidad
@@ -85,13 +86,15 @@ class Cuenta:
         self.__cantidad = cantidad
         
     def ingresar(self, cantidad):
-        self.__cantidad += cantidad
-        
-    def retirar(self, cantidad):
-        if (self.__cantidad > cantidad):
-            self.__cantidad -= cantidad
+        if cantidad > 0:
+            self.__cantidad += cantidad
         else:
-            print("No puede retirar ese monto")
+            print("Ingrese una cantidad superior a 0")
+    
+    #ejercicio indica que la cuenta puede estar en numeros rojos. supongo que hace referencia
+    #a que puede retirar mas dinero del que se tiene. No hay restricciones con los retiros 
+    def retirar(self, cantidad):
+            self.__cantidad -= cantidad
         
     def mostrar(self):
         self.__titular.mostrar() 
@@ -156,3 +159,4 @@ marc.mostrar()
 cj1.retirar(16000)
 
 cj1.mostrar()
+c1.ingresar(-11)
